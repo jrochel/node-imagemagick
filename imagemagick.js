@@ -367,8 +367,6 @@ exports.resizeArgs = function(options) {
   }
   if (!opt.dstPath)
     opt.dstPath = (opt.format ? opt.format+':-' : '-'); // stdout
-  if (opt.width === 0 && opt.height === 0)
-    throw new Error('both width and height can not be 0 (zero)');
 
   // build args
   var args = [opt.srcPath];
