@@ -338,6 +338,7 @@ exports.resizeArgs = function(options) {
   var opt = {
     srcPath: null,
     srcData: null,
+    srcIndex: 0,
     srcFormat: null,
     dstPath: null,
     quality: 0.8,
@@ -369,7 +370,8 @@ exports.resizeArgs = function(options) {
     opt.dstPath = (opt.format ? opt.format+':-' : '-'); // stdout
 
   // build args
-  var args = [opt.srcPath];
+  const indexSuffix = "[" + opt.srcIndex + "]";
+  var args = [opt.srcPath + indexSuffix];
   if (opt.sharpening > 0) {
     args = args.concat([
       '-set', 'option:filter:blur', String(1.0-opt.sharpening)]);
