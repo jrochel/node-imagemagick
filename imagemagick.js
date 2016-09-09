@@ -166,6 +166,7 @@ exports.identify = function(pathOrArgs, callback) {
     callback(err, result);
   });
   if (isData) {
+    proc.stdin.on('error', err => {});
     if ('string' === typeof pathOrArgs.data) {
       proc.stdin.setEncoding('binary');
       proc.stdin.write(pathOrArgs.data, 'binary');
@@ -258,6 +259,7 @@ exports.convert.path = 'convert';
 var resizeCall = function(t, callback) {
   var proc = exports.convert(t.args, t.opt.timeout, callback);
   if (t.opt.srcPath.match(/-$/)) {
+    proc.stdin.on('error', err => {});
     if ('string' === typeof t.opt.srcData) {
       proc.stdin.setEncoding('binary');
       proc.stdin.write(t.opt.srcData, 'binary');
